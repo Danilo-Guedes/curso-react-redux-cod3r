@@ -2,6 +2,9 @@
   height: 320px;
   width: 235px;
   border-radius: 5px;
-  overflow: hidden;
-  background-color: red; /* temporário */
+  /* overflow: hidden; */
+
+  display: grid;
+  grid-template-columns: repeat(4, 25%); /*igual escrever 25% 25% 25% 25% */
+  grid-template-rows: repeat(5, 48px);
 }
