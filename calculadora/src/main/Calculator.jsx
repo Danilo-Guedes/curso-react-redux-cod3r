@@ -4,7 +4,17 @@ import './Calculator.css';
 import Button from '../Components/Button';
 import Display from '../Components/Display';
 
+const initialState = {
+    displayValue: '0',
+    clearDisplay: false,
+    operation: null,
+    arrayOfValues: [0, 0],
+    currentIndex: 0,
+};
+
 export default class Calculator extends Component {
+    state = { ...initialState };
+
     constructor(props) {
         super(props);
 
@@ -13,7 +23,7 @@ export default class Calculator extends Component {
         this.addDigit = this.addDigit.bind(this);
     }
     clearMemory() {
-        console.log('Limpando...');
+        this.setState({ ...initialState });
     }
 
     setOperation(operation) {
@@ -21,13 +31,37 @@ export default class Calculator extends Component {
     }
 
     addDigit(digit) {
-        console.log(digit);
+        if (digit === '.' && this.state.displayValue.includes('.')) {
+            return;
+        }
+
+        if (this.state.displayValue === '0' && digit === '.') {
+            // eu que fiz a lógica do primeiro digito ser um ponto, nao tinha no curso
+            const displayValue = '0.';
+            this.setState({ displayValue, clearDisplay: false });
+        } else {
+            const invalidFirstDigit = this.state.displayValue === '0'; // || this.state.clearDisplay;
+            const currentValue = invalidFirstDigit
+                ? ''
+                : this.state.displayValue;
+            const displayValue = currentValue + digit;
+            this.setState({ displayValue, clearDisplay: false });
+
+            if (digit !== '.') {
+                const i = this.state.currentIndex;
+                const newValue = parseFloat(displayValue);
+                const arrayOfValues = [...this.state.arrayOfValues];
+                arrayOfValues[i] = newValue;
+                this.setState({ arrayOfValues });
+                console.log(arrayOfValues);
+            }
+        }
     }
 
     render() {
         return (
             <div className='calculator'>
-                <Display value={100} />
+                <Display value={this.state.displayValue} />
                 <Button label='AC' click={this.clearMemory} triple />
                 <Button label='/' click={this.setOperation} operation />
                 <Button label='7' click={this.addDigit} />
