@@ -27,7 +27,38 @@ export default class Calculator extends Component {
     }
 
     setOperation(operation) {
-        console.log(operation);
+        if (this.state.currentIndex === 0) {
+            this.setState({ operation, currentIndex: 1, clearDisplay: true });
+        } else {
+            const equals = operation === '=';
+            const currentOperation = this.state.operation;
+            const arrayOfValues = [...this.state.arrayOfValues];
+            //cód original usava eval() pratica nao segura, refatoramento sugerido feito abaixo
+            switch (currentOperation) {
+                case '/':
+                    arrayOfValues[0] = arrayOfValues[0] / arrayOfValues[1];
+                    break;
+                case '*':
+                    arrayOfValues[0] = arrayOfValues[0] * arrayOfValues[1];
+                    break;
+                case '-':
+                    arrayOfValues[0] = arrayOfValues[0] - arrayOfValues[1];
+                    break;
+                case '+':
+                    arrayOfValues[0] = arrayOfValues[0] + arrayOfValues[1];
+                    break;
+                default:
+                    break;
+            }
+
+            this.setState({
+                displayValue: arrayOfValues[0],
+                clearDisplay: true,  // logica do prof era !equals porem tinha comportamento errado
+                operation: equals ? null : operation,
+                currentIndex: equals ? 0 : 1,
+                arrayOfValues
+            });
+        }
     }
 
     addDigit(digit) {
@@ -40,8 +71,9 @@ export default class Calculator extends Component {
             const displayValue = '0.';
             this.setState({ displayValue, clearDisplay: false });
         } else {
-            const invalidFirstDigit = this.state.displayValue === '0'; // || this.state.clearDisplay;
-            const currentValue = invalidFirstDigit
+            const notRecieveNewValue =
+                this.state.displayValue === '0' || this.state.clearDisplay;
+            const currentValue = notRecieveNewValue
                 ? ''
                 : this.state.displayValue;
             const displayValue = currentValue + digit;
