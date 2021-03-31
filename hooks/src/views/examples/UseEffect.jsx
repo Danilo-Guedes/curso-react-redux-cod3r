@@ -19,10 +19,9 @@ const UseEffect = props => {
 
     useEffect(() => setSquared(calcSquared(number)), [number]);
 
-    const [number2, setnumber2] = useState(0);
     const [even, setEven] = useState(true)
 
-    useEffect(() => setEven(isEven(number2)),[number2])
+    useEffect(() => setEven(isEven(number)),[number])
 
     return (
         <div className='UseEffect'>
@@ -45,12 +44,6 @@ const UseEffect = props => {
             </div>
             <SectionTitle title='Exercício #2'> </SectionTitle>
             <div className='center'>
-                <input
-                    type='number'
-                    className='input'
-                    value={number2}
-                    onChange={e => setnumber2(e.target.value)}
-                />
                 <div>
                     <span className="text">Even or odd: </span>
                     <span className="text red">{even ? "par" : "ímpar"}</span>
