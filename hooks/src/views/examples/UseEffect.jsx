@@ -51,7 +51,10 @@ const UseEffect = props => {
                     value={number2}
                     onChange={e => setnumber2(e.target.value)}
                 />
-                <span className="text center">{even ? "par" : "impar"}</span>
+                <div>
+                    <span className="text">Even or odd: </span>
+                    <span className="text red">{even ? "par" : "ímpar"}</span>
+                </div>
             </div>
         </div>
     );
