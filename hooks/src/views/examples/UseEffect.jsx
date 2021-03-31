@@ -4,14 +4,8 @@ import SectionTitle from '../../components/layout/SectionTitle';
 
 const calcSquared = n => n ** 2;
 
-const isEven = n => {
-    if(n%2 === 0){
-        return true
-    } else{
-        return false
-    }
-    
-}
+const isEven = n => n%2 === 0 ? true : false
+ 
 
 const UseEffect = props => {
     const [number, setNumber] = useState(0);
@@ -46,7 +40,7 @@ const UseEffect = props => {
             <div className='center'>
                 <div>
                     <span className="text">Even or odd: </span>
-                    <span className="text red">{even ? "par" : "ímpar"}</span>
+                    <span className="text red">{even ? "Par" : "Ímpar"}</span>
                 </div>
             </div>
         </div>
