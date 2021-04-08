@@ -1,6 +1,7 @@
 import React from 'react';
 
-const UseCallbackButtons = props => { {/* Componente estático, não deveria renderizar várias vezes */}
+/* Componente estático, não deveria renderizar várias vezes */
+const UseCallbackButtons = props => { 
     console.log('renderizado...')
     return (
         <div>
@@ -12,5 +13,6 @@ const UseCallbackButtons = props => { {/* Componente estático, não deveria ren
     );
 };
 
-// export default UseCallbackButtons;  #### se não usar o React.memo o componente renderiza várias vezes
+// export default UseCallbackButtons;  #### se não usar o React.memo + useCallback 
+//o componente renderiza várias vezes
 export default React.memo(UseCallbackButtons);
