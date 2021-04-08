@@ -2,7 +2,7 @@ import React from 'react';
 
 export const data = {
     number: 4574,
-    text: 'O Danilo é muito mestre',
+    text: 'Danilo mestre - usando ContextAPI',
 };
 
 const DataContext = React.createContext();
