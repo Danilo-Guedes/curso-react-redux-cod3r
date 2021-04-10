@@ -15,7 +15,17 @@ function reducer(state, action) {
         case 'numberAdd2':
             return { ...state, number: state.number + 2 };
         case 'login':
-            return { ...state, user: { name: action.payload}};
+            return { ...state, user: { name: action.payload } };
+        case 'multiplyFor7':
+            return { ...state, number: state.number * 7 };
+        case 'divideBy25':
+            return { ...state, number: state.number / 25 };
+        case 'parseToInt':
+            return { ...state, number: parseInt(state.number) };
+        case 'addAnyNumber':
+            return { ...state, number: state.number + action.payload };
+        case 'logout':
+            return { ...state, user: { name: 'Usuário deslogado' } };
         default:
             return state;
     }
@@ -33,7 +43,7 @@ const UseReducer = props => {
                 {state.user ? (
                     <span className='text'>{state.user.name}</span>
                 ) : (
-                    <span className="text">Sem Usuário</span> 
+                    <span className='text'>Sem Usuário</span>
                 )}
                 <span className='text'>{state.number}</span>
                 <div>
@@ -45,9 +55,59 @@ const UseReducer = props => {
                     </button>
                     <button
                         className='btn'
-                        onClick={() => dispatch({ type: 'login', payload: 'Danilo o mestre' })}
+                        onClick={() =>
+                            dispatch({
+                                type: 'login',
+                                payload: 'Danilo o mestre',
+                            })
+                        }
                     >
                         Logar
+                    </button>
+                    <button
+                        className='btn'
+                        onClick={() =>
+                            dispatch({
+                                type: 'logout',
+                            })
+                        }
+                    >
+                        Deslogar
+                    </button>
+                    
+                    <button
+                        className='btn'
+                        onClick={() => dispatch({ type: 'multiplyFor7' })}
+                    >
+                        x 7
+                    </button>
+                    <button
+                        className='btn'
+                        onClick={() => dispatch({ type: 'divideBy25' })}
+                    >
+                        / 25
+                    </button>
+                    <button
+                        className='btn'
+                        onClick={() => dispatch({ type: 'parseToInt' })}
+                    >
+                        Int
+                    </button>
+                    <button
+                        className='btn'
+                        onClick={() =>
+                            dispatch({ type: 'addAnyNumber', payload: +10 })
+                        }
+                    >
+                        + 10
+                    </button>
+                    <button
+                        className='btn'
+                        onClick={() =>
+                            dispatch({ type: 'addAnyNumber', payload: - 15 })
+                        }
+                    >
+                        - 15
                     </button>
                 </div>
             </div>
