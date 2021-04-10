@@ -1,35 +1,16 @@
 import React, { useReducer } from 'react';
 import PageTitle from '../../components/layout/PageTitle';
 
-const initialState = {
-    other: '...',
-    products: [],
-    cart: [],
-    user: null,
-    // foco neste atributo do estado
-    number: 0,
-};
-
-function reducer(state, action) {
-    switch (action.type) {
-        case 'numberAdd2':
-            return { ...state, number: state.number + 2 };
-        case 'login':
-            return { ...state, user: { name: action.payload } };
-        case 'multiplyFor7':
-            return { ...state, number: state.number * 7 };
-        case 'divideBy25':
-            return { ...state, number: state.number / 25 };
-        case 'parseToInt':
-            return { ...state, number: parseInt(state.number) };
-        case 'addAnyNumber':
-            return { ...state, number: state.number + action.payload };
-        case 'logout':
-            return { ...state, user: { name: 'Usuário deslogado' } };
-        default:
-            return state;
-    }
-}
+import { initialState, reducer } from '../../store';
+import {
+    numberAdd2,
+    multiplyFor7,
+    divideBy25,
+    parseToInt,
+    add10,
+    sub15,
+} from '../../store/actions/number';
+import { login, logout } from '../../store/actions/user';
 
 const UseReducer = props => {
     const [state, dispatch] = useReducer(reducer, initialState);
@@ -49,64 +30,39 @@ const UseReducer = props => {
                 <div>
                     <button
                         className='btn'
-                        onClick={() => dispatch({ type: 'numberAdd2' })}
+                        onClick={() => numberAdd2(dispatch)}
                     >
                         +2
                     </button>
-                    <button
-                        className='btn'
-                        onClick={() =>
-                            dispatch({
-                                type: 'login',
-                                payload: 'Danilo o mestre',
-                            })
-                        }
-                    >
+                    <button className='btn' onClick={() => login(dispatch)}>
                         Logar
                     </button>
-                    <button
-                        className='btn'
-                        onClick={() =>
-                            dispatch({
-                                type: 'logout',
-                            })
-                        }
-                    >
+                    <button className='btn' onClick={() => logout(dispatch)}>
                         Deslogar
                     </button>
-                    
+
                     <button
                         className='btn'
-                        onClick={() => dispatch({ type: 'multiplyFor7' })}
+                        onClick={() => multiplyFor7(dispatch)}
                     >
                         x 7
                     </button>
                     <button
                         className='btn'
-                        onClick={() => dispatch({ type: 'divideBy25' })}
+                        onClick={() => divideBy25(dispatch)}
                     >
                         / 25
                     </button>
                     <button
                         className='btn'
-                        onClick={() => dispatch({ type: 'parseToInt' })}
+                        onClick={() => parseToInt(dispatch)}
                     >
                         Int
                     </button>
-                    <button
-                        className='btn'
-                        onClick={() =>
-                            dispatch({ type: 'addAnyNumber', payload: +10 })
-                        }
-                    >
+                    <button className='btn' onClick={() => add10(dispatch)}>
                         + 10
                     </button>
-                    <button
-                        className='btn'
-                        onClick={() =>
-                            dispatch({ type: 'addAnyNumber', payload: - 15 })
-                        }
-                    >
+                    <button className='btn' onClick={() => sub15(dispatch)}>
                         - 15
                     </button>
                 </div>
