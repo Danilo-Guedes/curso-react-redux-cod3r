@@ -9,10 +9,10 @@
     color: #777
 }
 
-.action {
+.tableAction {
     width: 120px;
 }
 
-input {
-    margin-bottom: 20px;
+.todoForm {
+    margin-bottom: 80px;
 }
