@@ -8,12 +8,25 @@ export default props => {
         return lista.map(todo => {
             return (
                 <tr key={todo._id}>
-                    <td>{todo.description}</td>
+                    <td className={todo.done ? 'markAsDone' : ''}>{todo.description}</td>
                     <td>
+                        <IconButton
+                            style='success'
+                            icon='check'
+                            onClick={() => props.handleMarkAsDone(todo)}
+                            hide={todo.done}
+                        />
+                        <IconButton
+                            style='warning'
+                            icon='undo'
+                            onClick={() => props.handleMarkAsPending(todo)}
+                            hide={!todo.done}
+                        />
                         <IconButton
                             style='danger'
                             icon='trash-o'
                             onClick={() => props.handleRemove(todo)}
+                            hide={!todo.done}
                         />
                     </td>
                 </tr>
@@ -22,10 +35,10 @@ export default props => {
     };
     return (
         <table className='table'>
-            <thead>
+            <thead> 
                 <tr>
                     <th>Descrição</th>
-                    <th>Ações</th>
+                    <th className='action'>Ações</th>
                 </tr>
             </thead>
             <tbody>{renderRows()}</tbody>
