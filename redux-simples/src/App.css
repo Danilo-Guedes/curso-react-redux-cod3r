@@ -10,4 +10,5 @@ h1 {
 
 .linha {
     display: flex;
+    justify-content: space-between;
 }
