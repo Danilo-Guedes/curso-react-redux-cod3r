@@ -7,14 +7,12 @@ function App() {
         <div className='App'>
             <h1>Exercício React-Redux (Simples)</h1>
             <div className='linha'>
-                <Card></Card>
-                <Card></Card>
-                <Card></Card>
+                <Card red title="Card 1">Contet 1</Card>
+                <Card green title="Card 2">Contet 2</Card>
             </div>
             <div className='linha'>
-                <Card></Card>
-                <Card></Card>
-                <Card></Card>
+                <Card blue title="Card 3">Contet 3</Card>
+                <Card purple title="Card 4">Contet 4</Card>
             </div>
         </div>
     );
