@@ -4,12 +4,11 @@ import Card from './Card';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default props => {
-    const {min, max} = props
     return (
-        <Card title='Média dos Números' green >
+        <Card title='Média dos Números' green>
             <span>
                 <span>Resultado:</span>
-                <strong>{(min + max) / 2 }</strong>
+                <strong>{5}</strong>
             </span>
         </Card>
     );
