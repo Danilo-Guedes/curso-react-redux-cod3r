@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import IconButton from '../template/iconButton';
 const TodoList = props => {
-    console.log(props);
+    // console.log(props);
     const renderRows = () => {
         const lista = props.list || [];
         return lista.map(todo => {
