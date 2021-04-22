@@ -33,6 +33,7 @@
   "dependencies": {
     "react-redux": "^5.0.2",
     "redux": "^3.6.0",
+    "redux-multi": "^0.1.12",
     "redux-promise": "^0.5.3"
   }
 }
