@@ -16,7 +16,7 @@ export const search = () => {
     };
 };
 
-// JEITO ANTIGO PORÉM NÃO PERMITE CHAMAR O SEARCH DEPOIS DA CRIAÇÃO DO TODO
+// PRIMEIRA VERSÃO NÃO PERMITE CHAMAR O SEARCH DEPOIS DA CRIAÇÃO DO TODO
 // export const add = (description) => {
 //     const request = axios.post(URL, {description});
 
@@ -26,8 +26,21 @@ export const search = () => {
 //     }
 // }
 
-export const add = description => {
-    const request = axios.post(URL, { description });
+// SEGUNDA VERSÃO USANDO O redux-multi, QUE RETRNA UM ARRAY DE OBJ
+//PORÉM AINDA NÃO DANDO CERTO
+// export const add = description => {
+//     const request = axios.post(URL, { description });
 
-    return [{ type: 'TODO_ADDED', payload: request }, search()];
+//     return [{ type: 'TODO_ADDED', payload: request }, search()];
+// };
+
+//TERCEIRA VERSAO USANDO O redux-thunk
+// QUE RETORNA UMA FUNCAO COM OS DISPATCHES
+export const add = description => {
+    return dispatch => {
+        axios
+            .post(URL, { description })
+            .then(resp => dispatch({ type: 'TODO_ADDED', payload: resp.data }))
+            .then(resp => dispatch(search()));
+    };
 };
