@@ -1,2 +1,2 @@
 require('./config/server');
-// require('./config/router')
+require('./config/database')
