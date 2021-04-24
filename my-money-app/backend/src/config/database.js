@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-module.exports = mongoose.connect('mongodb://localhost/mymoney');
+module.exports = mongoose.connect('mongodb://localhost/mymoney', {useMongoClient: true });
 
 
 // UMA FORMA DE FZ A ALTERACAO DA MSG PADRAO DE ERRO QDO O CAMPO FOR REQUIRED ou no proprio Model
