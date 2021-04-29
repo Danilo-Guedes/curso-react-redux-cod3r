@@ -1,10 +1,15 @@
 const INITIAL_STATE = {
     summary: {
-        credit: 0,
-        debt: 0,
+        credit: 3,
+        debt: 2,
     },
-};
+}
 
-export default function(state = INITIAL_STATE, action) {
-    return state
+export default function (state = INITIAL_STATE, action) {
+    switch (action.type) {
+        case 'BILLING_SUMMARY_FETCHED':
+            return { ...state, summary: action.payload.data }
+        default:
+            return state
+    }
 }
