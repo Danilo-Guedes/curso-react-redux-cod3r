@@ -1,7 +1,7 @@
 const INITIAL_STATE = {
     summary: {
-        credit: 3,
-        debt: 2,
+        credit: 0,
+        debt: 0,
     },
 }
 
