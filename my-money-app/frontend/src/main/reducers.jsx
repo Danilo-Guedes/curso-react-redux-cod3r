@@ -1,10 +1,12 @@
 import { combineReducers, CombineReducers } from 'redux'
 import DashboarReducer from '../dashboard/dashboardReducer';
 import TabReducer from '../common/tab/tabReducer'
+import BilligCyclesReducer from '../billingCycle/billingCycleReducer'
 
 const rootReducer = combineReducers({
     dashboard: DashboarReducer,
-    tab: TabReducer
+    tab: TabReducer,
+    billingCycle: BilligCyclesReducer
 })
 
 export default rootReducer
