@@ -1,19 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
-import {getList, showUpdate} from './billingCycleActions'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { getList, showUpdate } from './billingCycleActions'
 
 import If from '../common/operator/if'
 
 class BillingCycleList extends Component {
-
-    componentWillMount(){
+    componentWillMount() {
         this.props.getList()
     }
 
     renderRows() {
-        const list = this.props.list || [];
+        const list = this.props.list || []
 
         return list.map(bc => (
             <tr key={bc._id}>
@@ -21,20 +20,25 @@ class BillingCycleList extends Component {
                 <td>{bc.month}</td>
                 <td>{bc.year}</td>
                 <td>
-                    <button className='btn btn-warning' onClick={() => this.props.showUpdate(bc)}>
+                    <button
+                        className='btn btn-warning'
+                        onClick={() => this.props.showUpdate(bc)}
+                    >
                         <i className='fa fa-pencil'></i>
                     </button>
+                    {/* <button className='btn btn-danger'>
+                        <i className='fa fa-trash'></i>
+                    </button> */}
                 </td>
             </tr>
-           
-        )) 
+        ))
     }
 
-    render(){
-        const list = this.props.list !== [] 
+    render() {
+        const list = this.props.list !== []
         return (
             <div>
-                <table className="table">
+                <table className='table'>
                     <thead>
                         <tr>
                             <th>Nome</th>
@@ -44,10 +48,9 @@ class BillingCycleList extends Component {
                         </tr>
                     </thead>
                     <tbody>
+                        {this.renderRows()}
 
-                            {this.renderRows()}
-                   
-{/* {         #######   MINHA SOLUCAO ANTES DE VER A RESPOSTA   
+                        {/* {         #######   MINHA SOLUCAO ANTES DE VER A RESPOSTA   
                             this.props.list.map(e => ( 
                              <tr key={e._id}>
                                  <td>{e.name}</td>
@@ -60,10 +63,9 @@ class BillingCycleList extends Component {
             </div>
         )
     }
-
-
 }
-const mapStateToProps = state => ({list: state.billingCycle.list})
-const mapDispatchToProps = dispatch => bindActionCreators({getList, showUpdate}, dispatch)
+const mapStateToProps = state => ({ list: state.billingCycle.list })
+const mapDispatchToProps = dispatch =>
+    bindActionCreators({ getList, showUpdate }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(BillingCycleList)
