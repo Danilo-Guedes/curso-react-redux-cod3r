@@ -16,11 +16,18 @@ export const getList = () => {
 }
 
 export function create(values) {
-    // const texto = console.log(values);
+    return submit(values, 'post')
+}
 
+export function update(values) {
+    return submit(values, 'put')
+}
+
+function submit(values, method) {
     return dispatch => {
-        axios
-            .post(`${URL}/billingCycles`, values)
+        const id = values._id ? values._id : ''
+
+        axios[method](`${URL}/billingCycles/${id}`, values)
             .then(resp => {
                 toastr.success('Sucesso', 'Operação realizada com sucesso!')
                 dispatch(init())
