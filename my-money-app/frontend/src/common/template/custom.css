@@ -7,3 +7,11 @@
 .icon {
     margin-top: 10px;
 }
+
+button {
+    margin-left: 8px;
+}
+
+.table-actions {
+    width: 150px;
+}
