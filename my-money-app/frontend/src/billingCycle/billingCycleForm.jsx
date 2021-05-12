@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import {bindActionCreators} from 'redux'
+import { bindActionCreators } from 'redux'
 import { reduxForm, Field } from 'redux-form'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
-import {init} from './billingCycleActions'
+import { init } from './billingCycleActions'
 
 import LabelAndInput from '../common/form/labelAndInput'
 import CreditList from './creditList'
@@ -20,7 +20,7 @@ class BillingCycleForm extends Component {
                         label='Nome'
                         cols='12 4'
                         placeholder='Informe um nome'
-                        type="text"
+                        type='text'
                         readOnly={readOnly}
                     />
                     <Field
@@ -29,7 +29,7 @@ class BillingCycleForm extends Component {
                         label='Mês'
                         cols='12 4'
                         placeholder='Informe um Mês'
-                        type="number"
+                        type='number'
                         readOnly={readOnly}
                     />
                     <Field
@@ -38,16 +38,23 @@ class BillingCycleForm extends Component {
                         label='Ano'
                         cols='12 4'
                         placeholder='Informr um ano'
-                        type="number"
+                        type='number'
                         readOnly={readOnly}
                     />
-                    <CreditList cols='12 6' />
+                    <CreditList cols='12 6' readOnly={readOnly} />
                 </div>
                 <div className='box-footer'>
-                    <button type='submit' className={`btn btn-${this.props.submitClass}`}>
+                    <button
+                        type='submit'
+                        className={`btn btn-${this.props.submitClass}`}
+                    >
                         {this.props.submitLabel}
                     </button>
-                    <button type="button" className="btn btn-default" onClick={this.props.init}>
+                    <button
+                        type='button'
+                        className='btn btn-default'
+                        onClick={this.props.init}
+                    >
                         Cancel
                     </button>
                 </div>
@@ -56,11 +63,12 @@ class BillingCycleForm extends Component {
     }
 }
 
-
-BillingCycleForm = reduxForm({ form: 'billingCycleForm', destroyOnUnmount: false })(BillingCycleForm)
+BillingCycleForm = reduxForm({
+    form: 'billingCycleForm',
+    destroyOnUnmount: false,
+})(BillingCycleForm)
 //reduxForm is a function like connect function from react-redux
 
-const MapDispatchToProps = dispatch => bindActionCreators({init}, dispatch);
+const MapDispatchToProps = dispatch => bindActionCreators({ init }, dispatch)
 
 export default connect(null, MapDispatchToProps)(BillingCycleForm)
-
